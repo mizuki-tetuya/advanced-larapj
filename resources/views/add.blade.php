@@ -5,7 +5,7 @@
     color: white;
     padding: 5px 40px;
   }
-  tr:nth-child(4) td{
+  tr:nth-child(odd) td{
     padding: 10px;
   }
   td {
@@ -26,6 +26,15 @@
 @section('title', 'add.blade.php')
 
 @section('content')
+@if (count($errors) > 0)
+<ul>
+  @foreach ($errors->all() as $error)
+  <li>
+    {{$error}}
+  </li>
+  @endforeach
+</ul>
+@endif
 <form action="/add" method="POST">
   <table>
     @csrf
