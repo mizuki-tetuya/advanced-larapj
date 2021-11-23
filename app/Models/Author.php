@@ -21,7 +21,13 @@ class Author extends Model
         $txt = 'ID:'.$this->id . ' ' . $this->name . '(' . $this->age . '才'.') '.$this->nationality;
         return $txt;
     }
-    public function book() {
+    public function book(){
         return $this->hasOne('App\Models\Book');
+    }
+    public function books(){
+        return $this->hasmany('App\Models\Book');
+    }
+    public function reviews(){
+        return $this->belongsToMany(Review::class)->withPivot('review');
     }
 }

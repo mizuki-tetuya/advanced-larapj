@@ -9,7 +9,7 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $items = Author::all();
+        $items = Author::Paginate(4);
         return view('index', ['items' => $items]);
     }
     public function find()
@@ -30,7 +30,7 @@ class AuthorController extends Controller
         $data = [
             'item' => $author,
         ];
-        return view('binds', $data);
+        return view('author.binds', $data);
     }
     public function add()
     {
@@ -66,9 +66,11 @@ class AuthorController extends Controller
         Author::find($request->id)->delete();
         return redirect('/');
     }
-    public function relate(Request $request)
+    public function relate(Request $request) //追記
     {
-        $items = Author::all();
-        return view('author.index', ['items' => $items]);
+        $hasItems = Author::has('book')->get();
+        $noItems = Author::doesntHave('book')->get();
+        $param = ['hasItems' => $hasItems, 'noItems' => $noItems];
+        return view('author.index',$param);
     }
 }

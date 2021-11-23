@@ -13,24 +13,25 @@
       background-color: #EEEEEE;
       text-align: center;
     }
+    svg.w-5.h-5 {
+      width: 30px;
+      height: 30px;
+    }
 </style>
-@section('title', 'author.index.blade.php')
+@section('title', 'index.blade.php')
 
 @section('content')
 <table>
   <tr>
-    <th>Date</th>
-    <th>book</th>
+    <th>Data</th>
   </tr>
-  <tr>
   @foreach ($items as $item)
-  </tr>
+  <tr>
     <td>
-      @if ($item->book !=null)
       {{$item->getDetail()}}
-      @endif
     </td>
   </tr>
   @endforeach
 </table>
+{{ $items->links() }}
 @endsection
