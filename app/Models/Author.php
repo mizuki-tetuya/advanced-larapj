@@ -25,7 +25,7 @@ class Author extends Model
         return $this->hasOne('App\Models\Book');
     }
     public function books(){
-        return $this->hasmany('App\Models\Book');
+        return $this->hasMany('App\Models\Book');
     }
     public function reviews(){
         return $this->belongsToMany(Review::class)->withPivot('review');
