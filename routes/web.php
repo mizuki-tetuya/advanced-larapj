@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionController;
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +39,14 @@ Route::get('/relation', [AuthorController::class, 'relate']);
 
 Route::get('/session', [SessionController::class, 'getSes']);
 Route::post('/session', [SessionController::class, 'postSes']);
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
